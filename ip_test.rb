@@ -11,6 +11,12 @@ class TestIP < Test::Unit::TestCase
     assert_equal IP.new("255.255.255.255").to_i, 0xffffffff
   end
 
+  def test_to_s
+    assert_equal IP.from_i(0x00000000).to_s, "0.0.0.0"
+    assert_equal IP.from_i(0xffffffff).to_s, "255.255.255.255"
+    assert_equal IP.from_i(0xffffff00).to_s, "255.255.255.0"
+  end
+
   def test_inverse
     assert_equal IP.new("10.1.10.13"), IP.from_i(IP.new("10.1.10.13").to_i)
   end

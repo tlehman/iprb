@@ -7,6 +7,10 @@ class IP
     self.to_i == ip.to_i
   end
 
+  def to_s
+    @octets.map(&:to_s).join(".")
+  end
+
   def to_i
     @octets.each_with_index.map { |o,i| o*(256**(3-i)) }.inject(:+)
   end
