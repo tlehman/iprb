@@ -6,6 +6,18 @@ class TestIP < Test::Unit::TestCase
     assert_equal IP.new("192.168.0.110"), IP.new("192.168.0.110")
   end
 
+  def test_addition
+    ip = IP.new("255.255.255.10")
+    ip_inc = ip + 1
+    assert_equal ip_inc.to_s, "255.255.255.11"
+  end
+
+  def test_and
+    ip1 = IP.new("192.168.1.14")
+    ip2 = IP.new("0.0.0.255")
+    assert_equal (ip1 & ip2), IP.new("0.0.0.14")
+  end
+
   def test_to_i
     assert_equal IP.new("0.0.0.0").to_i, 0x00000000
     assert_equal IP.new("255.255.255.255").to_i, 0xffffffff
